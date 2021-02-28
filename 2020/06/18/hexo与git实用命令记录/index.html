@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hexo与git实用命令记录 | 廿廿难辞</title><meta name="keywords" content="hexo,git"><meta name="author" content="廿廿难辞"><meta name="copyright" content="廿廿难辞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="日常踩坑记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo与git实用命令记录">
+<meta property="og:url" content="https://jintaovo.cn/2020/06/18/hexo%E4%B8%8Egit%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="廿廿难辞">
+<meta property="og:description" content="日常踩坑记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/jilu.png">
+<meta property="article:published_time" content="2020-06-18T05:51:50.000Z">
+<meta property="article:modified_time" content="2020-12-28T15:28:31.000Z">
+<meta property="article:author" content="廿廿难辞">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/jilu.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/tubiao.png"><link rel="canonical" href="https://jintaovo.cn/2020/06/18/hexo%E4%B8%8Egit%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="X579jOZC9Z"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-28 23:28:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/css/myfont.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/css/load.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/css/Lete1.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/css/bokee.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/avatar.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/friend.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://so.jintaovo.cn/"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-quote-left"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/bb/"><i class="fa-fw fas fas fa-comments"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://travellings-zeta.vercel.app/"><i class="fa-fw fas fa-rocket"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-cubes"></i><span> 检索</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/font5/"><i class="fa-fw fas fa-font"></i><span> Fontawesome速查</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://fontello.github.io/linecons.font/demo.html"><i class="fa-fw fas fa-font"></i><span> Linecons速查</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/me/"><i class="fa-fw fas fa-star"></i><span> 炫酷主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/jilu.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">廿廿难辞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://so.jintaovo.cn/"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-quote-left"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/bb/"><i class="fa-fw fas fas fa-comments"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://travellings-zeta.vercel.app/"><i class="fa-fw fas fa-rocket"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-cubes"></i><span> 检索</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/font5/"><i class="fa-fw fas fa-font"></i><span> Fontawesome速查</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://fontello.github.io/linecons.font/demo.html"><i class="fa-fw fas fa-font"></i><span> Linecons速查</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/me/"><i class="fa-fw fas fa-star"></i><span> 炫酷主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">hexo与git实用命令记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-18T05:51:50.000Z" title="发表于 2020-06-18 13:51:50">2020-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-28T15:28:31.000Z" title="更新于 2020-12-28 23:28:31">2020-12-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%85%8D%E7%BD%AE/">配置</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Butterfly主题安装及升级"><a href="#Butterfly主题安装及升级" class="headerlink" title="Butterfly主题安装及升级"></a>Butterfly主题安装及升级</h2><p><code>稳定版【建议】</code></p>
+<p>在你的博客根目录里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master https:&#x2F;&#x2F;github.com&#x2F;jerryc127&#x2F;hexo-theme-butterfly.git themes&#x2F;butterfly</span><br></pre></td></tr></table></figure>
+
+<p><code>测试版</code></p>
+<blockquote>
+<p>测试版可能存在Bugs，追求稳定的请安装稳定版</p>
+</blockquote>
+<p>如果想要安装比较新的dev分支，可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b dev https:&#x2F;&#x2F;github.com&#x2F;jerryc127&#x2F;hexo-theme-butterfly.git themes&#x2F;butterfly</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>升级方法：在主题目录下，运行git pull</p>
+</blockquote>
+<hr>
+<h2 id="git相关命令"><a href="#git相关命令" class="headerlink" title="git相关命令"></a>git相关命令</h2><h3 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;jintaovo&quot; </span><br><span class="line">git config --global user.email &quot;1712421071@qq.com&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git init &#x2F;&#x2F;将该文件夹中的文件纳入到Git的版本控制中 </span><br><span class="line">git add . &#x2F;&#x2F;将所有的文件添加到Git暂存区 </span><br><span class="line">git commit -m &quot;此次提交的说明&quot; &#x2F;&#x2F;将文件提交到本地 </span><br><span class="line">git remote add origin git@github.com:Jintaovo&#x2F;cdn.git &#x2F;&#x2F;告诉Git你的Gitee仓库在哪里 </span><br><span class="line">git push -u origin master &#x2F;&#x2F;将你本地的文件提交到Gitee仓库的master分支</span><br><span class="line">git remote set-url origin git remote add origin git@github.com:Jintaovo&#x2F;cdn.git &#x2F;&#x2F;修改远程仓库</span><br><span class="line"></span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;Jintaovo&#x2F;cdn.git &#x2F;&#x2F;克隆远程仓库</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="git-ssh密钥创建"><a href="#git-ssh密钥创建" class="headerlink" title="git ssh密钥创建"></a>git ssh密钥创建</h3><blockquote>
+<p>许多人都用过git的https直接拉取代码，今天来操作下ssh的形式拉取代码</p>
+</blockquote>
+<p>安装了Git后，桌面右键打开Git bash</p>
+<ol>
+<li><p>查看是否配置过密钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br></pre></td></tr></table></figure></li>
+<li><p>进行创建ssh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &#39;1712421071@qq.com&#39;</span><br></pre></td></tr></table></figure>
+<p> 之后不断Enter即可</p>
+</li>
+<li><p>查看你生成的公钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p> 输入该命令回车后，复制看到的公钥</p>
+</li>
+<li><p>登录你的github进行配置</p>
+</li>
+<li><p>最后验证下这个key是不是正常工作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T gitee@gitee.com</span><br><span class="line">&#x2F;&#x2F; 使用github的同学，则改为</span><br><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p> 之后会问你</p>
+<p> Are you sure you want to continue connecting (yes/no)?</p>
+<p> 只要回答yes，回车就会看到下面的</p>
+<p> Hi Jintaovo! You’ve successfully authenticated, but Github does not provide shell access.</p>
+<p> 就表示你的设置已经成功了。</p>
+</li>
+<li><p>接下来就可以开始直接克隆你的代码下来</p>
+<p> 复制你代码库的ssh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:Jintaovo&#x2F;cdn.git</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="使用Jsdelivr-CDN加速博客访问速度"><a href="#使用Jsdelivr-CDN加速博客访问速度" class="headerlink" title="使用Jsdelivr/CDN加速博客访问速度"></a>使用Jsdelivr/CDN加速博客访问速度</h2><ol>
+<li>本地新建一个文件夹，文件夹名称自定义，然后进入文件夹，在文件夹内依次执行下面的命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:Jintaovo&#x2F;cdn.git #你新建仓库的HTTP或者SSH地址链接</span><br><span class="line">git pull origin master #将仓库拉取到本地文件夹</span><br></pre></td></tr></table></figure></li>
+<li>接着把你要上传的文件放进这个文件夹内（可以多层目录）<br>然后再依次执行下面的命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .    #(.表示所有的)</span><br><span class="line">git commit -m &#39;添加文件内容描述&#39; </span><br><span class="line">git push origin master   #将本地仓库文件推送到GitHub新建的仓库</span><br></pre></td></tr></table></figure></li>
+<li>然后去GitHub仓库查看效果即可。</li>
+<li>点击release，进行版本的发布,自定义发布版本号，添加标题和描述等</li>
+<li>通过jsdelivr引用资源<div class="note info flat"><p><code>使用方法</code>：<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E5%8F%91%E5%B8%83%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7/%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84">https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名@发布的版本号/文件路径</a></p>
+</div>
+例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Jintaovo&#x2F;cdn&#x2F;img&#x2F;1.jpg</span><br><span class="line">https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Jintaovo&#x2F;cdn&#x2F;cos.css</span><br><span class="line">https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Jintaovo&#x2F;cdn&#x2F;googleapis-fonts&#x2F;fonts.css</span><br></pre></td></tr></table></figure>
+<code>注意</code>：版本号不是必需的，是为了区分新旧资源，如果不使用版本号，将会直接引用最新资源</li>
+<li>如果以后在向cdn库里添加或者修改文件，首先把文件添加到本地仓库，然后依次在本地cdn仓库文件位置执行以下命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master  #拉取远程仓库到本地</span><br><span class="line">git add .</span><br><span class="line">git commit -m &#39;描述内容&#39;</span><br><span class="line">git push origin master  # 推送到GitHub仓库</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="Hexo安装博客踩坑"><a href="#Hexo安装博客踩坑" class="headerlink" title="Hexo安装博客踩坑"></a>Hexo安装博客踩坑</h2><blockquote>
+<p>更换butterfly主题后报错：extends includes/layout.pug block content #recent-posts.recent-posts include includes/recent-posts.pug include includes/pagination.pug</p>
+</blockquote>
+<p><code>解决办法</code>：</p>
+<ol>
+<li><p>在博客目录下打开git bash here，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hexo clean  hexo g  hexo s   然后问题就解决啦</p>
+</li>
+</ol>
+<hr>
+<h2 id="Hexo版本升级指南"><a href="#Hexo版本升级指南" class="headerlink" title="Hexo版本升级指南"></a>Hexo版本升级指南</h2><ol>
+<li><p>全局升级hexo-cli，先<code>hexo version</code>查看当前版本，然后<code>npm i hexo-cli -g</code>，再次<code>hexo version</code>查看是否升级成功。</p>
+</li>
+<li><p>使用<code>npm install -g npm-check</code>和<code>npm-check</code>，检查系统中的插件是否有升级的，可以看到自己前面都安装了那些插件</p>
+</li>
+<li><p>使用<code>npm install -g npm-upgrade</code>和<code>npm-upgrade</code>，升级系统中的插件</p>
+</li>
+<li><p>使用<code>npm update -g</code>和<code>npm update --save</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="解决jsdelivr-github图床访问失效问题"><a href="#解决jsdelivr-github图床访问失效问题" class="headerlink" title="解决jsdelivr+github图床访问失效问题"></a>解决jsdelivr+github图床访问失效问题</h2><p><code>问题描述：</code></p>
+<p>如果太久没更新github仓库，可能会导致原本已经上传了好久的一些图片访问失效。</p>
+<p><code>报错如下：</code><br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Package size exceeded the configured limit of 50 MB. Try https:&#x2F;&#x2F;github.com&#x2F;Jintaovo&#x2F;cdn&#x2F;tree&#x2F;master&#x2F;img&#x2F;logo&#x2F;bili.jpg instead.</span><br></pre></td></tr></table></figure></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/r7UYLT"><img src= "https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/loading.gif" data-lazy-src="https://s3.ax1x.com/2020/12/28/r7UYLT.png" alt="r7UYLT.png"></a></p>
+<p><code>解决方法：</code></p>
+<p>在jsdelivr图片链接中的github仓库名后添加@master即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">例子：以github仓库名为imgbed为例</span><br><span class="line">访问失效的图片链接：</span><br><span class="line">https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Jintaovo&#x2F;cdn&#x2F;img&#x2F;logo&#x2F;bili.jpg</span><br><span class="line">添加@master后的链接：</span><br><span class="line">https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Jintaovo&#x2F;cdn@master&#x2F;img&#x2F;logo&#x2F;bili.jpg</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="博文发布测试-bat"><a href="#博文发布测试-bat" class="headerlink" title="博文发布测试.bat"></a>博文发布测试.bat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@echo off </span><br><span class="line">cd E:\hexo</span><br><span class="line">call dakai.bat &amp; call ceshi.bat </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="发布博客及备份-bat"><a href="#发布博客及备份-bat" class="headerlink" title="发布博客及备份.bat"></a>发布博客及备份.bat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">E:</span><br><span class="line">cd E:\Hexo</span><br><span class="line">hexo deploy&amp;&amp;hexo b</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="cdn资源更新-bat"><a href="#cdn资源更新-bat" class="headerlink" title="cdn资源更新.bat"></a>cdn资源更新.bat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">E:</span><br><span class="line">cd E:\Github</span><br><span class="line">git add .&amp;&amp;git commit -m &quot;update&quot;&amp;&amp;git push origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">廿廿难辞</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jintaovo.cn/2020/06/18/hexo%E4%B8%8Egit%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/">https://jintaovo.cn/2020/06/18/hexo%E4%B8%8Egit%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jintaovo.cn" target="_blank">廿廿难辞</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/hexo/">hexo</a><a class="post-meta__tags" href="/tags/git/">git</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/jilu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/26/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E6%81%A2%E5%A4%8D%E8%BF%87%E7%A8%8B/"><img class="prev-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/hexo.jpeg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">记一次完整的博客本地恢复过程</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/17/%E6%9C%9F%E6%9C%AB%E6%B1%87%E6%8A%A5/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/hb.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">期末汇报</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/08/26/记一次完整的博客本地恢复过程/" title="记一次完整的博客本地恢复过程"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/hexo.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-26</div><div class="title">记一次完整的博客本地恢复过程</div></div></a></div><div><a href="/2020/06/15/使用hexo-git-backup插件备份你的博客/" title="使用 hexo-git-backup 插件备份你的 Hexo 博客"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-15</div><div class="title">使用 hexo-git-backup 插件备份你的 Hexo 博客</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/avatar.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/friend.gif'" alt="avatar"/><div class="author-info__name">廿廿难辞</div><div class="author-info__description">一往无前🏃‍♂️</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jintaovo"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=169359169&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:169359169@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/weixin.png" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">祈愿万家灯火熨烫过脉络,刀山与火海多深刻,都陪你渡过。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Butterfly%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85%E5%8F%8A%E5%8D%87%E7%BA%A7"><span class="toc-number">1.</span> <span class="toc-text">Butterfly主题安装及升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">git相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">git配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-ssh%E5%AF%86%E9%92%A5%E5%88%9B%E5%BB%BA"><span class="toc-number">2.2.</span> <span class="toc-text">git ssh密钥创建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Jsdelivr-CDN%E5%8A%A0%E9%80%9F%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6"><span class="toc-number">3.</span> <span class="toc-text">使用Jsdelivr&#x2F;CDN加速博客访问速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E5%AE%89%E8%A3%85%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91"><span class="toc-number">4.</span> <span class="toc-text">Hexo安装博客踩坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97"><span class="toc-number">5.</span> <span class="toc-text">Hexo版本升级指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3jsdelivr-github%E5%9B%BE%E5%BA%8A%E8%AE%BF%E9%97%AE%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">解决jsdelivr+github图床访问失效问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E6%96%87%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95-bat"><span class="toc-number">7.</span> <span class="toc-text">博文发布测试.bat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%8F%8A%E5%A4%87%E4%BB%BD-bat"><span class="toc-number">8.</span> <span class="toc-text">发布博客及备份.bat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cdn%E8%B5%84%E6%BA%90%E6%9B%B4%E6%96%B0-bat"><span class="toc-number">9.</span> <span class="toc-text">cdn资源更新.bat</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/28/hello-world/" title="Hello World"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/3.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/02/28/hello-world/" title="Hello World">Hello World</a><time datetime="2021-02-28T05:18:34.966Z" title="发表于 2021-02-28 13:18:34">2021-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/24/%E4%B8%87%E8%83%BD%E5%88%B7%E6%9C%BA%E6%8C%87%E5%8D%97/" title="万能刷机指南{通用}"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/flash.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="万能刷机指南{通用}"/></a><div class="content"><a class="title" href="/2021/02/24/%E4%B8%87%E8%83%BD%E5%88%B7%E6%9C%BA%E6%8C%87%E5%8D%97/" title="万能刷机指南{通用}">万能刷机指南{通用}</a><time datetime="2021-02-24T08:56:18.000Z" title="发表于 2021-02-24 16:56:18">2021-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/31/2021%E6%96%B0%E5%B9%B4%E8%B4%BA%E8%AF%8D/" title="国家主席习近平发表二〇二一年新年贺词"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn@master/imgs/1231/1.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="国家主席习近平发表二〇二一年新年贺词"/></a><div class="content"><a class="title" href="/2020/12/31/2021%E6%96%B0%E5%B9%B4%E8%B4%BA%E8%AF%8D/" title="国家主席习近平发表二〇二一年新年贺词">国家主席习近平发表二〇二一年新年贺词</a><time datetime="2020-12-31T13:18:25.000Z" title="发表于 2020-12-31 21:18:25">2020-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/19/%E7%94%B3%E8%AE%BA%E6%A0%BC%E5%BC%8F/" title="千举万变，其道一也"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/sl.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="千举万变，其道一也"/></a><div class="content"><a class="title" href="/2020/11/19/%E7%94%B3%E8%AE%BA%E6%A0%BC%E5%BC%8F/" title="千举万变，其道一也">千举万变，其道一也</a><time datetime="2020-11-19T11:59:28.000Z" title="发表于 2020-11-19 19:59:28">2020-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/30/%E6%96%87%E6%A1%A3/" title="须知少时凌云志，曾许人间第一流"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/fm/1.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Jintaovo/cdn/img/wz.png'" alt="须知少时凌云志，曾许人间第一流"/></a><div class="content"><a class="title" href="/2020/10/30/%E6%96%87%E6%A1%A3/" title="须知少时凌云志，曾许人间第一流">须知少时凌云志，曾许人间第一流</a><time datetime="2020-10-30T05:51:50.000Z" title="发表于 2020-10-30 13:51:50">2020-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 廿廿难辞</div><div class="framework-info"></div><div class="card-widget card-hitokoto"></div><div class="card-content"><div class="item-headline"><div id="hitokoto">:D 获取中...</div><script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script><script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script><script>fetch('https://v1.hitokoto.cn')
+  .then(function (res){
+  return res.json();
+})
+.then(function (data) {
+  var hitokoto = document.getElementById('hitokoto');
+  hitokoto.innerText = data.hitokoto;
+  var hitofrom = document.getElementById('hitofrom');
+  //- hitofrom.innerText = "　　　　　——" + data.from + '';
+})
+.catch(function (err) {
+  console.error(err);
+})
+</script><span></span><a href="https://icp.gov.moe" target="_blank">萌ICP备 </a><a href="https://icp.gov.moe/?keyword=20211999" target="_blank"> 20211999号</a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    let initData = {
+      el: '#waline-wrap',
+      serverURL: 'https://comment-dun.vercel.app',
+      avatar: 'monsterid',
+      path: location.pathname,
+      emojiCDN: '',
+      emojiMaps: "",
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const waline = new Waline(initData)
+  }
+
+  if (typeof Waline === 'function') initWaline() 
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/js/Lete1.js"></script><script async data-pjax src="https://cdn.jsdelivr.net/gh/Jintaovo/cdn/js/load.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
